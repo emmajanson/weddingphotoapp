@@ -1,0 +1,44 @@
+.gallery_icon_area {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    margin-top: 2vh;
+}
+
+.gallery_icon {
+    color: white;
+    font-size: 30px; 
+    cursor: pointer;
+}
+
+.camera {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+video {
+    display: flex;
+    width: 450px;
+    height: 450px;
+}
+
+.button-area {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    position: absolute;
+    border: none;
+    border-radius: 4px;
+    padding: 16px 24px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+
+}
