@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,300&family=Noto+Sans&family=Playfair+Display:ital@0;1&display=swap');
+
 .gallery_icon_area {
     display: flex;
     justify-content: flex-end;
@@ -14,31 +16,74 @@
 .camera {
     display: flex;
     justify-content: center;
-    margin-top: 10vh;
 }
 
 video {
     display: flex;
-    width: 450px;
-    height: 450px;
+    width: 800px;
+    height: auto;
+    border: 10px solid white;
+    object-fit: fill;
+    overflow: hidden;
 }
 
 .button-area {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 button {
-    position: absolute;
-    border: none;
-    border-radius: 4px;
+    border: 2px solid white;
     padding: 16px 24px;
-    background-color: white;
+    background-color: transparent;
     cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+button:hover {
+    background-color: white;
+    color: #BBB9AE;
+    transition: 0.4s;
 }
 
 .result {
     display: flex;
     justify-content: center;
+}
 
+.hide {
+    display: none;
+}
+
+#canvas{
+    display: flex;
+    width: 800px;
+    height: auto;
+    border: 10px solid white;
+    object-fit: fill;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 1024px) {
+    .camera {
+        width: 90vw;
+        margin: 40vw 5vw 0 5vw;
+    }  
+    .video {
+        align-items: center;
+        width: 350px;
+
+    }
+    #canvas {
+        width: 90vw;
+        margin: 0vw 5vw 0 5vw;
+    }
+    button {
+        font-size: 12px;
+    }
 }

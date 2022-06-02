@@ -1,8 +1,7 @@
 const dataToCache = "v1"
 
 self.addEventListener("install", (event) => {
-
-    self.skipWating()
+    self.skipWaiting()
  })
  
  self.addEventListener("fetch", (event) => {

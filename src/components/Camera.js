@@ -49,6 +49,8 @@ function Camera() {
         const width = 414;
         const height = width / (16/9);
 
+        document.querySelector('.hide').style.display='flex';
+
         let video = videoRef.current;
         let photo = photoRef.current;
 
@@ -71,12 +73,15 @@ function Camera() {
         setImage([...image, imageData]);
         localStorage.setItem("images", JSON.stringify(imageData));
 
+        updatePhotosJSONbin()
         NotificationHandler();
     };
 
     const newPhoto = () => {
         let photo = photoRef.current;
         let ctx = photo.getContext('2d');
+
+        document.querySelector('.hide').style.display='none';
 
         ctx.clearRect(0, 0, photo.width, photo.height);
         setHasPhoto(false);
@@ -87,6 +92,52 @@ function Camera() {
         localStorage.setItem("images", JSON.stringify(image));
         getVideo();
     }, [videoRef, hasPhoto, image]);
+
+// -------------------------- JSON BIN START -------------------------- //
+
+const ACCES_URL = "https://api.jsonbin.io/b/6298ef93402a5b38021a333c"
+const X_MASTER_KEY = "$2b$10$wmk87m0u8d5ZMbBqAjbXMu/kwayHjJbgEKZ2cu5.g.o0hn3MXD9Z."
+
+
+async function getFromJsonBIN () {
+  const responce = await fetch(`${ACCES_URL}/latest`, {
+    headers: {
+      'X-Master-Key': X_MASTER_KEY,
+    }
+  });
+  const data = await responce.json()
+
+  let newArray = { pictures: [] }
+
+  console.log('newArray: ', newArray);
+
+  localStorage.setItem('cameraApp', JSON.stringify(newArray));
+
+  return newArray
+}
+
+async function updatePhotosJSONbin () {
+
+    console.log('updatePhotosToJSONbin körs');
+
+  const fromStorage = window.localStorage.getItem('images')
+
+  const responce = await fetch(ACCES_URL, {
+    method: 'PUT',
+    body: fromStorage,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': X_MASTER_KEY
+    }
+});
+
+const data = await responce.json();
+
+console.log(data);
+}
+
+// -------------------------- JSON BIN END -------------------------- //
+
 
   return (
     
@@ -103,7 +154,7 @@ function Camera() {
               )}
           </div>
 
-          <div className="result">
+          <div className="result hide">
               <canvas id="canvas" ref={photoRef}></canvas>
           </div>
       
@@ -111,7 +162,6 @@ function Camera() {
               {!hasPhoto && (
                   <button onClick={takePhoto}>FÖREVIGA ETT ÖGONBLICK</button>
               )}
-
               {hasPhoto && (
                   <button onClick={newPhoto}>FÖREVIGA ETT NYTT ÖGONBLICK</button>
               )}

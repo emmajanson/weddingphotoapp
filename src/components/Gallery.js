@@ -30,10 +30,11 @@ function Gallery() {
   return (
     <div className='gallery'>
         
-        <h1>PHOTOCOLLECTION</h1>
+        
         <div className="backButton-area">
             <IoIosArrowBack onClick={() => {navigate("/")}}/>
         </div>
+        <h1>PHOTOCOLLECTION</h1>
         <div className='picture-grid' >
           {local.length > 0 ?
           images.map((image,index) => (
